@@ -1,0 +1,1216 @@
+---------------------------Clock Cycle: 1---------------------------
+
+  Entry  |  busy  |  Instruction   |  State   |  Dest  |  Value  
+-----------------------------------------------------------------
+    0    |  Yes   |  LD F6 34+ R2  |  Issued  |   F6   |         
+    1    |   No   |                |          |        |         
+    2    |   No   |                |          |        |         
+    3    |   No   |                |          |        |         
+    4    |   No   |                |          |        |         
+    5    |   No   |                |          |        |         
+    6    |   No   |                |          |        |         
+    7    |   No   |                |          |        |         
+    8    |   No   |                |          |        |         
+
+   name  |  busy  |  Op  |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |   A   
+----------------------------------------------------------------------
+   Add0  |   No   |      |      |      |      |      |        |       
+   Add1  |   No   |      |      |      |      |      |        |       
+   Add2  |   No   |      |      |      |      |      |        |       
+  Mult0  |   No   |      |      |      |      |      |        |       
+  Mult1  |   No   |      |      |      |      |      |        |       
+  Mult2  |   No   |      |      |      |      |      |        |       
+  Load0  |  Yes   |  LD  |  R2  |      |      |      |   0    |  34+  
+  Load1  |   No   |      |      |      |      |      |        |       
+  Load2  |   No   |      |      |      |      |      |        |       
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |      |     |     |     |     |     |  0  |     |     |     |    
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No |  No
+
+
+
+---------------------------Clock Cycle: 2---------------------------
+
+  Entry  |  busy  |  Instruction   |    State    |  Dest  |  Value  
+--------------------------------------------------------------------
+    0    |  Yes   |  LD F6 34+ R2  |  Executing  |   F6   |         
+    1    |  Yes   |  LD F2 45+ R3  |    Issued   |   F2   |         
+    2    |   No   |                |             |        |         
+    3    |   No   |                |             |        |         
+    4    |   No   |                |             |        |         
+    5    |   No   |                |             |        |         
+    6    |   No   |                |             |        |         
+    7    |   No   |                |             |        |         
+    8    |   No   |                |             |        |         
+
+   name  |  busy  |  Op  |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |   A   
+----------------------------------------------------------------------
+   Add0  |   No   |      |      |      |      |      |        |       
+   Add1  |   No   |      |      |      |      |      |        |       
+   Add2  |   No   |      |      |      |      |      |        |       
+  Mult0  |   No   |      |      |      |      |      |        |       
+  Mult1  |   No   |      |      |      |      |      |        |       
+  Mult2  |   No   |      |      |      |      |      |        |       
+  Load0  |  Yes   |  LD  |      |      |      |      |   0    |   44  
+  Load1  |  Yes   |  LD  |  R3  |      |      |      |   1    |  45+  
+  Load2  |   No   |      |      |      |      |      |        |       
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |      |     |  1  |     |     |     |  0  |     |     |     |    
+Busy    |   No |  No | Yes |  No |  No |  No | Yes |  No |  No |  No |  No
+
+
+
+---------------------------Clock Cycle: 3---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |  Yes   |   LD F6 34+ R2   |   Executed  |   F6   |         
+    1    |  Yes   |   LD F2 45+ R3   |  Executing  |   F2   |         
+    2    |  Yes   |  MULTD F0 F2 F4  |    Issued   |   F0   |         
+    3    |   No   |                  |             |        |         
+    4    |   No   |                  |             |        |         
+    5    |   No   |                  |             |        |         
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |         |      |      |      |      |        |      
+   Add1  |   No   |         |      |      |      |      |        |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |      |  F4  |  F2  |      |   2    |      
+  Mult1  |   No   |         |      |      |      |      |        |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |  Yes   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |  Yes   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  0  |     |     |     |    
+Busy    |  Yes |  No | Yes |  No |  No |  No | Yes |  No |  No |  No |  No
+
+
+
+---------------------------Clock Cycle: 4---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |  Yes   |   LD F6 34+ R2   |  WriteBack  |   F6   |    10   
+    1    |  Yes   |   LD F2 45+ R3   |   Executed  |   F2   |         
+    2    |  Yes   |  MULTD F0 F2 F4  |    Issued   |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |    Issued   |   F8   |         
+    4    |   No   |                  |             |        |         
+    5    |   No   |                  |             |        |         
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |  Yes   |   SUBD  |      |      |  F6  |  F2  |   3    |      
+   Add1  |   No   |         |      |      |      |      |        |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |      |  F4  |  F2  |      |   2    |      
+  Mult1  |   No   |         |      |      |      |      |        |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |  Yes   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |  Yes   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  0  |     |  3  |     |    
+Busy    |  Yes |  No | Yes |  No |  No |  No | Yes |  No | Yes |  No |  No
+
+
+
+---------------------------Clock Cycle: 5---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |  Yes   |   LD F2 45+ R3   |  WriteBack  |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |    Issued   |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |    Issued   |   F8   |         
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |   No   |                  |             |        |         
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |  Yes   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |         |      |      |      |      |        |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |  Yes   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  0  |     |  3  |     |  4 
+Busy    |  Yes |  No | Yes |  No |  No |  No |  No |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 6---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  Executing  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |  Executing  |   F8   |         
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |    Issued   |   F6   |         
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |  Yes   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |  Yes   |   ADDD  |      |  F2  |  F8  |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 7---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  Executing  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |   Executed  |   F8   |         
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |    Issued   |   F6   |         
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |  Yes   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |  Yes   |   ADDD  |      |  F2  |  F8  |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 8---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  Executing  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |  WriteBack  |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |    Issued   |   F6   |         
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |  Yes   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |  Yes   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 9---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  Executing  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |  WriteBack  |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  Executing  |   F6   |         
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |  Yes   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 10---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  Executing  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |  WriteBack  |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |   Executed  |   F6   |         
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |  Yes   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 11---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  Executing  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |  WriteBack  |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |  Yes   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 12---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  Executing  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |  WriteBack  |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 13---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  Executing  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |  WriteBack  |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 14---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  Executing  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |  WriteBack  |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 15---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |   Executed  |   F0   |         
+    3    |  Yes   |  SUBD F8 F6 F2   |  WriteBack  |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |      |  F6  |  F0  |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 16---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |  Yes   |  MULTD F0 F2 F4  |  WriteBack  |   F0   |    10   
+    3    |  Yes   |  SUBD F8 F6 F2   |  WriteBack  |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |    Issued   |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |  Yes   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |  Yes |  No |  No |  No |  No |  No | Yes |  No | Yes |  No | Yes
+
+
+
+---------------------------Clock Cycle: 17---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 18---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 19---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 20---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 21---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 22---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 23---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 24---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 25---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 26---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 27---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 28---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 29---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 30---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 31---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 32---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 33---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 34---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 35---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  Executing  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 36---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |   Executed  |  F10   |         
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 37---------------------------
+
+  Entry  |  busy  |   Instruction    |    State    |  Dest  |  Value  
+----------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |    Commit   |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |    Commit   |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |    Commit   |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |    Commit   |   F8   |    10   
+    4    |  Yes   |  DIVD F10 F0 F6  |  WriteBack  |  F10   |    10   
+    5    |  Yes   |  ADDD F6 F8 F2   |  WriteBack  |   F6   |    10   
+    6    |   No   |                  |             |        |         
+    7    |   No   |                  |             |        |         
+    8    |   No   |                  |             |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |  Yes   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No | Yes |  No |  No |  No | Yes
+
+
+
+---------------------------Clock Cycle: 38---------------------------
+
+  Entry  |  busy  |   Instruction    |  State   |  Dest  |  Value  
+-------------------------------------------------------------------
+    0    |   No   |   LD F6 34+ R2   |  Commit  |   F6   |    10   
+    1    |   No   |   LD F2 45+ R3   |  Commit  |   F2   |    10   
+    2    |   No   |  MULTD F0 F2 F4  |  Commit  |   F0   |    10   
+    3    |   No   |  SUBD F8 F6 F2   |  Commit  |   F8   |    10   
+    4    |   No   |  DIVD F10 F0 F6  |  Commit  |  F10   |    10   
+    5    |   No   |  ADDD F6 F8 F2   |  Commit  |   F6   |    10   
+    6    |   No   |                  |          |        |         
+    7    |   No   |                  |          |        |         
+    8    |   No   |                  |          |        |         
+
+   name  |  busy  |    Op   |  Vj  |  Vk  |  Qj  |  Qk  |  Dest  |  A   
+------------------------------------------------------------------------
+   Add0  |   No   |   SUBD  |  F6  |  F2  |      |      |   3    |      
+   Add1  |   No   |   ADDD  |  F8  |  F2  |      |      |   5    |      
+   Add2  |   No   |         |      |      |      |      |        |      
+  Mult0  |   No   |  MULTD  |  F2  |  F4  |      |      |   2    |      
+  Mult1  |   No   |   DIVD  |  F0  |  F6  |      |      |   4    |      
+  Mult2  |   No   |         |      |      |      |      |        |      
+  Load0  |   No   |    LD   |      |      |      |      |   0    |  44  
+  Load1  |   No   |    LD   |      |      |      |      |   1    |  55  
+  Load2  |   No   |         |      |      |      |      |        |      
+
+Field   |   F0 |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10
+Reorder |   2  |     |  1  |     |     |     |  5  |     |  3  |     |  4 
+Busy    |   No |  No |  No |  No |  No |  No |  No |  No |  No |  No |  No
+
+
+
